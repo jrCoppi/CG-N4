@@ -12,6 +12,9 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
+import com.sun.opengl.util.GLUT;
+
+import Outros.Cor;
 import Padrao.Point4D;
 import Principal.Mundo;
 
@@ -21,10 +24,13 @@ import Principal.Mundo;
 public class Main implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
 	private GL gl;
 	private GLU glu;
+	private GLUT glut;
 	private GLAutoDrawable glDrawable;
 	private int antigoX, antigoY = 0;
 	private double posicaoX = 0, posicaoY = 0;
-
+	private double xEye, yEye, zEye; //camera
+	private double xCenter, yCenter, zCenter; //luz
+	
 	/*
 	 * Iniciar
 	 * 
@@ -35,8 +41,29 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		glDrawable = drawable;
 		gl = drawable.getGL();
 		glu = new GLU();
+		glut = new GLUT();
 		glDrawable.setGL(new DebugGL(gl));
-		gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		
+		gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		
+		this.iniciaCamera();
+		this.iniciaLuz();
+		
+	    gl.glEnable(GL.GL_CULL_FACE);
+//	    gl.glDisable(GL.GL_CULL_FACE);
+		
+	    gl.glEnable(GL.GL_DEPTH_TEST);
+	}
+	
+	private void iniciaCamera(){
+		xEye = 50.0f; 		yEye = 50.0f; 		zEye = 50.0f;
+		xCenter = 0.0f;		yCenter = 0.0f;		zCenter = 0.0f;
+	}
+	
+	private void iniciaLuz(){
+		float posLight[] = { 5.0f, 5.0f, 10.0f, 0.0f };
+		gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, posLight, 0);
+		gl.glEnable(GL.GL_LIGHT0);
 	}
 
 	/*
@@ -46,18 +73,43 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 	 * GLAutoDrawable)
 	 */
 	public void display(GLAutoDrawable arg0) {
-		gl.glClear(GL.GL_COLOR_BUFFER_BIT);
+		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
+		glu.gluLookAt(xEye, yEye, zEye, xCenter, yCenter, zCenter, 0.0f, 1.0f, 0.0f);
 
-		glu.gluOrtho2D(0, 400, 400, 0);
-		SRU();
+		drawAxis();
 
 		// Desenha a tela no mundo
-		Mundo.getInstance().desenhaTela(gl);
-
+		gl.glEnable(GL.GL_LIGHTING);
+		
+		Mundo.getInstance().desenhaTela(gl,glut);
+		
+		gl.glDisable(GL.GL_LIGHTING);
+		
 		gl.glFlush();
+	}
+	
+	public void drawAxis() {
+		// eixo X - Red
+		gl.glColor3f(1.0f, 0.0f, 0.0f);
+		gl.glBegin(GL.GL_LINES);
+			gl.glVertex3f(0.0f, 0.0f, 0.0f);
+			gl.glVertex3f(50.0f, 0.0f, 0.0f);
+		gl.glEnd();
+		// eixo Y - Green
+		gl.glColor3f(0.0f, 1.0f, 0.0f);
+		gl.glBegin(GL.GL_LINES);
+			gl.glVertex3f(0.0f, 0.0f, 0.0f);
+			gl.glVertex3f(0.0f, 50.0f, 0.0f);
+		gl.glEnd();
+		// eixo Z - Blue
+		gl.glColor3f(0.0f, 0.0f, 1.0f);
+		gl.glBegin(GL.GL_LINES);
+			gl.glVertex3f(0.0f, 0.0f, 0.0f);
+			gl.glVertex3f(0.0f, 0.0f, 50.0f);
+		gl.glEnd();
 	}
 
 	/*
@@ -79,7 +131,7 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 			break;
 		case KeyEvent.VK_KP_RIGHT:
 			direcao='D';
-			break;
+			break;		
 		}
 		Mundo.getInstance().realizarMovimento(direcao);
 		glDrawable.display();		
@@ -88,11 +140,10 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 
 	// MATRIZ
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
+	    gl.glMatrixMode(GL.GL_PROJECTION);
+	    gl.glLoadIdentity();
 		gl.glViewport(0, 0, width, height);
-		System.out.println(width);
-		System.out.println(height);
+	    glu.gluPerspective(60, width/height, 0.1, 100);		
 	}
 
 	public void displayChanged(GLAutoDrawable arg0, boolean arg1, boolean arg2) {
@@ -135,9 +186,7 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 	 * @param
 	 * java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
 	 */
-	public void mouseMoved(MouseEvent e) {
-		glDrawable.display();
-	}
+	public void mouseMoved(MouseEvent e) {}
 
 	public void SRU() {
 		// eixo x

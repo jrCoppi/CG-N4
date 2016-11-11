@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import javax.media.opengl.GL;
 
+import com.sun.opengl.util.GLUT;
+
 public class ObjetoFactory {
     private HashMap<Integer,ObjetoGrafico> Elementos;
 
@@ -25,9 +27,11 @@ public class ObjetoFactory {
         Elementos.put(5, new Wumpus());
     }
     
-    public void desenha(Integer Key,GL gl){ 
+    public void desenha(Integer Key,GL gl,GLUT glut, float x, float y){ 
         try {
-            Elementos.get(Key).desenha(gl);;
+        	Elementos.get(Key).eixoX = x;
+        	Elementos.get(Key).eixoY = y;
+            Elementos.get(Key).desenha(gl,glut);
         } catch (Exception ex){
         	//
         }

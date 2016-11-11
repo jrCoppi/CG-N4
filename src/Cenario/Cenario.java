@@ -82,18 +82,18 @@ public class Cenario {
 		return null; 
 	}
 
-	public void moverFrente() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void moverTras() {
-		// TODO Auto-generated method stub
-		
+	public void atualizarPosicaoPlayer(int[] posicaoAnterior, int[] posicaoAtual)
+	{
+		if(posicaoAtual.length==2){
+			CENARIO[posicaoAtual[0]][posicaoAtual[1]]= player;
+			CENARIO[posicaoAnterior[0]][posicaoAnterior[1]] = livre;			
+			
+		}
+		 
 	}
 
 	public void rotacionarDireita() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
