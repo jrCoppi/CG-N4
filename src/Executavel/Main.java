@@ -14,6 +14,7 @@ import javax.media.opengl.glu.GLU;
 
 import com.sun.opengl.util.GLUT;
 
+import Outros.Camera;
 import Outros.Cor;
 import Padrao.Point4D;
 import Principal.Mundo;
@@ -26,10 +27,6 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 	private GLU glu;
 	private GLUT glut;
 	private GLAutoDrawable glDrawable;
-	private int antigoX, antigoY = 0;
-	private double posicaoX = 0, posicaoY = 0;
-	private double xEye, yEye, zEye; //camera
-	private double xCenter, yCenter, zCenter; //luz
 	
 	/*
 	 * Iniciar
@@ -46,18 +43,12 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		
-		this.iniciaCamera();
 		this.iniciaLuz();
 		
 	    gl.glEnable(GL.GL_CULL_FACE);
 //	    gl.glDisable(GL.GL_CULL_FACE);
 		
 	    gl.glEnable(GL.GL_DEPTH_TEST);
-	}
-	
-	private void iniciaCamera(){
-		xEye = 50.0f; 		yEye = 50.0f; 		zEye = 50.0f;
-		xCenter = 0.0f;		yCenter = 0.0f;		zCenter = 0.0f;
 	}
 	
 	private void iniciaLuz(){
@@ -77,7 +68,20 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
-		glu.gluLookAt(xEye, yEye, zEye, xCenter, yCenter, zCenter, 0.0f, 1.0f, 0.0f);
+		glu.gluLookAt(
+				this.getCamera().getxEye(), 
+				this.getCamera().getyEye(), 
+				this.getCamera().getzEye(), 
+				this.getCamera().getxCenter(), 
+				this.getCamera().getyCenter(), 
+				this.getCamera().getzCenter(), 
+				0.0f, 1.0f, 0.0f
+		);
+		
+		//ver como rotacionar
+		//gl.glRotatef((float)this.getCamera().getxEye(), 1, 0, 0);
+		//gl.glRotatef((float)this.getCamera().getyEye(), 0, 1, 0);
+		//gl.glRotatef((float)this.getCamera().getzEye(), 0, 0, 1);
 
 		drawAxis();
 
@@ -89,6 +93,10 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		gl.glDisable(GL.GL_LIGHTING);
 		
 		gl.glFlush();
+	}
+	
+	public Camera getCamera(){
+		return Mundo.getInstance().getCamera();
 	}
 	
 	public void drawAxis() {
@@ -132,6 +140,13 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		case KeyEvent.VK_KP_RIGHT:
 			direcao='D';
 			break;		
+		case KeyEvent.VK_1:
+			Mundo.getInstance().setCameraEmUso("CIMA");
+			
+			break;
+		case KeyEvent.VK_2:
+			Mundo.getInstance().setCameraEmUso("PESSOA");
+			break;
 		}
 		Mundo.getInstance().realizarMovimento(direcao);
 		glDrawable.display();		

@@ -1,10 +1,13 @@
 package Principal;
 
+import java.util.HashMap;
+
 import javax.media.opengl.GL;
 
 import com.sun.opengl.util.GLUT;
 
 import Elementos.ObjetoFactory;
+import Outros.Camera;
 import Cenario.Cenario;
 
 /**
@@ -12,9 +15,10 @@ import Cenario.Cenario;
  */
 public class Mundo {
 	private static Mundo instance;
-	private Camera camera;
+	private String cameraEmUso;
 	private Cenario tela;
 	private ObjetoFactory objetoFactory;
+	private HashMap<String, Camera> arrCameras;
 
 	public ObjetoFactory getObjetoFactory() {
 		return objetoFactory;
@@ -33,36 +37,37 @@ public class Mundo {
 	}
 
 	private Mundo() {
-		this.camera = new Camera();
+		this.arrCameras = new HashMap<>();
+		this.arrCameras.put("PESSOA", new Camera("PESSOA"));
+		this.arrCameras.put("CIMA", new Camera("CIMA"));
+		
+		this.cameraEmUso = "PESSOA";
 		this.objetoFactory = new ObjetoFactory();
-
 	}
 
 	public void desenhaTela(GL gl,GLUT glut) {
+		float translacaoZ = 0;
 		float translacaoX = 0;
-		float translacaoY = 0;
 		// Percorre o array e manda desenhar passando o valor da celula
 		// Desenha apenas os vizinhos visiveis para não sobrecarregar
-		for (int i = 0; i < this.tela.getInstance().CENARIO.length; i++,translacaoY++) {
-			for (int j = 0; j < this.tela.getInstance().CENARIO[i].length; j++,translacaoX++) {
+		for (int i = 0; i < this.tela.getInstance().CENARIO.length; i++,translacaoX++) {
+			for (int j = 0; j < this.tela.getInstance().CENARIO[i].length; j++,translacaoZ++) {
 				
 				this.getObjetoFactory().desenha(
 						this.tela.getInstance().CENARIO[i][j], 
 						gl, 
 						glut,
 						translacaoX,
-						translacaoY
+						0,
+						translacaoZ
 				);
 			}
-			translacaoX= 0;
+			translacaoZ= 0;
 		}
-		
-		
 	}
 
 	public void realizarMovimento(char sentido) {
-		if (Jogo.getInstance().getInstance().isAtivo()) 
-		{
+		if (Jogo.getInstance().isAtivo()) {
 			switch (sentido) {
 			case 'C':
 				Jogo.getInstance().moverFrente();
@@ -81,7 +86,18 @@ public class Mundo {
 			}
 
 		}
-
+	}
+	
+	/**
+	 * Retorna a camera em uso
+	 * @return
+	 */
+	public Camera getCamera(){
+		return this.arrCameras.get(this.cameraEmUso);
+	}
+	
+	public void setCameraEmUso(String cameraEmUso) {
+		this.cameraEmUso = cameraEmUso;
 	}
 
 }

@@ -26,7 +26,7 @@ public class Cenario {
 		livre = Elemento.LIVRE.getValor();
 		parede = Elemento.PAREDE.getValor();
 		player = Elemento.PLAYER.getValor();
-		buraco = Elemento.PLAYER.getValor();
+		buraco = Elemento.BURACO.getValor();
 		ouro = Elemento.OURO.getValor();
 		wumpus = Elemento.WUMPUS.getValor();
 		objetosCarregados = new HashMap<String,ObjetoGrafico>();
@@ -45,11 +45,11 @@ public class Cenario {
 	private void mapearCenario() {
 
 		CENARIO = new int[][] 
-			{ 	{ livre, livre, livre, parede, livre, parede, livre, livre, buraco, livre },
-				{ livre, parede, livre, livre, livre, livre, livre, parede, livre, livre },
-				{ livre, parede, parede, parede, livre, parede, livre, parede, parede, parede },
-				{ livre, livre, livre, ouro, buraco, parede, livre, parede, livre, livre },
-				{ livre, parede, buraco, parede, livre, parede, wumpus, livre, livre, parede },
+			{ 	{ livre, livre, livre, parede, livre, parede, livre, livre, buraco, parede },
+				{ livre, parede, livre, livre, livre, livre, livre, parede, livre, buraco },
+				{ livre, parede, parede, parede, livre, parede, livre, livre, livre, parede },
+				{ livre, livre, livre, ouro, livre, parede, livre, parede, livre, livre },
+				{ livre, parede, buraco, parede, buraco, parede, wumpus, livre, livre, parede },
 				{ livre, parede, livre, parede, parede, parede, parede, parede, livre, parede },
 				{ livre, livre, livre, livre, livre, livre, livre, parede, livre, parede },
 				{ livre, parede, buraco, parede, livre, parede, parede, parede, livre, parede },

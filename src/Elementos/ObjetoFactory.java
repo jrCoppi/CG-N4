@@ -27,10 +27,11 @@ public class ObjetoFactory {
         Elementos.put(5, new Wumpus());
     }
     
-    public void desenha(Integer Key,GL gl,GLUT glut, float x, float y){ 
+    public void desenha(Integer Key,GL gl,GLUT glut, float x, float y, float z){ 
         try {
         	Elementos.get(Key).eixoX = x;
         	Elementos.get(Key).eixoY = y;
+        	Elementos.get(Key).eixoZ = z;
             Elementos.get(Key).desenha(gl,glut);
         } catch (Exception ex){
         	//
