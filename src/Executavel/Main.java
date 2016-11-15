@@ -83,7 +83,7 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		//gl.glRotatef((float)this.getCamera().getyEye(), 0, 1, 0);
 		//gl.glRotatef((float)this.getCamera().getzEye(), 0, 0, 1);
 
-		drawAxis();
+		//drawAxis();
 
 		// Desenha a tela no mundo
 		gl.glEnable(GL.GL_LIGHTING);

@@ -17,6 +17,7 @@ public class Cenario {
 	private final int buraco;
 	private final int ouro;
 	private final int wumpus;
+	private final int seta;
 	private static Cenario instance;
 	public static int[][] CENARIO;
 	private HashMap<String, ObjetoGrafico> objetosCarregados;
@@ -29,6 +30,7 @@ public class Cenario {
 		buraco = Elemento.BURACO.getValor();
 		ouro = Elemento.OURO.getValor();
 		wumpus = Elemento.WUMPUS.getValor();
+		seta = Elemento.SETA.getValor();
 		objetosCarregados = new HashMap<String,ObjetoGrafico>();
 		mapearCenario();
 
@@ -82,14 +84,11 @@ public class Cenario {
 		return null; 
 	}
 
-	public void atualizarPosicaoPlayer(int[] posicaoAnterior, int[] posicaoAtual)
-	{
+	public void atualizarPosicaoPlayer(int[] posicaoAnterior, int[] posicaoAtual){
 		if(posicaoAtual.length==2){
 			CENARIO[posicaoAtual[0]][posicaoAtual[1]]= player;
-			CENARIO[posicaoAnterior[0]][posicaoAnterior[1]] = livre;			
-			
+			CENARIO[posicaoAnterior[0]][posicaoAnterior[1]] = seta;		
 		}
-		 
 	}
 
 	public void rotacionarDireita() {

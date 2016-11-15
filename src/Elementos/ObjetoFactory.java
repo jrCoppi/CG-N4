@@ -20,11 +20,13 @@ public class ObjetoFactory {
     private void setElementos() {
     	//0 - Livre | 1 - Parede | 2 - Player | 3 - Poço |  4  - Ouro| 5 - Wumpus 
         Elementos = new HashMap<Integer,ObjetoGrafico>();
+        Elementos.put(0, new Livre());
         Elementos.put(1, new Parede());
         Elementos.put(2, new Player());
         Elementos.put(3, new Buraco());
         Elementos.put(4, new Ouro());
         Elementos.put(5, new Wumpus());
+        Elementos.put(6, new Seta());
     }
     
     public void desenha(Integer Key,GL gl,GLUT glut, float x, float y, float z){ 

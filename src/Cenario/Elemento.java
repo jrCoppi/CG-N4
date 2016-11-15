@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum Elemento {
 
-	LIVRE(0), PAREDE(1), PLAYER(2), BURACO(3), OURO(4), WUMPUS(5);
+	LIVRE(0), PAREDE(1), PLAYER(2), BURACO(3), OURO(4), WUMPUS(5), SETA(6);
 
 	private Elemento(int valor) {
 		this.valor = valor;
