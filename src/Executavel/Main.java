@@ -68,23 +68,24 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
-		glu.gluLookAt(
-				this.getCamera().getxEye(), 
-				this.getCamera().getyEye(), 
-				this.getCamera().getzEye(), 
-				this.getCamera().getxCenter(), 
-				this.getCamera().getyCenter(), 
-				this.getCamera().getzCenter(), 
-				0.0f, 1.0f, 0.0f
-		);
 		
 		//ver como rotacionar
 		//gl.glRotatef((float)this.getCamera().getxEye(), 1, 0, 0);
 		//gl.glRotatef((float)this.getCamera().getyEye(), 0, 1, 0);
 		//gl.glRotatef((float)this.getCamera().getzEye(), 0, 0, 1);
+		
+		glu.gluLookAt(
+				this.getCamera().getxEye(), //P.linha x largura 
+				this.getCamera().getyEye(), //altura
+				this.getCamera().getzEye(), //P.altura x largura 
+				this.getCamera().getxCenter(), //Cx = P.coluna x largura
+				this.getCamera().getyCenter(), //altura 
+				this.getCamera().getzCenter(), //Cz(P.linha 1) * largura
+				0.0f, 1.0f, 0.0f
+		);
 
-		//drawAxis();
-
+		drawAxis();
+		
 		// Desenha a tela no mundo
 		gl.glEnable(GL.GL_LIGHTING);
 		
@@ -131,13 +132,13 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		case KeyEvent.VK_UP:
 			direcao='C';
 			break;
-		case KeyEvent.VK_KP_DOWN:
+		case KeyEvent.VK_DOWN:
 			direcao='B';
 			break;		
-		case KeyEvent.VK_KP_LEFT:
+		case KeyEvent.VK_LEFT:
 			direcao='E';
 			break;
-		case KeyEvent.VK_KP_RIGHT:
+		case KeyEvent.VK_RIGHT:
 			direcao='D';
 			break;		
 		case KeyEvent.VK_1:

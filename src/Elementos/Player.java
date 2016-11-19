@@ -20,7 +20,7 @@ public class Player extends ObjetoGrafico {
 			gl.glScalef(escalaCubo1[0],escalaCubo1[1],escalaCubo1[2]);
 			//posição
 			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
-			//glut.glutSolidCube(1.0f);
+			glut.glutSolidCube(1.0f);
 		gl.glPopMatrix();
 	}
 

@@ -47,16 +47,20 @@ public class Cenario {
 	private void mapearCenario() {
 
 		CENARIO = new int[][] 
-			{ 	{ livre, livre, livre, parede, livre, parede, livre, livre, buraco, parede },
-				{ livre, parede, livre, livre, livre, livre, livre, parede, livre, buraco },
-				{ livre, parede, parede, parede, livre, parede, livre, livre, livre, parede },
-				{ livre, livre, livre, ouro, livre, parede, livre, parede, livre, livre },
-				{ livre, parede, buraco, parede, buraco, parede, wumpus, livre, livre, parede },
-				{ livre, parede, livre, parede, parede, parede, parede, parede, livre, parede },
-				{ livre, livre, livre, livre, livre, livre, livre, parede, livre, parede },
-				{ livre, parede, buraco, parede, livre, parede, parede, parede, livre, parede },
-				{ parede, parede, livre, parede, livre, livre, livre, livre, livre, parede }, 
-				{ player, livre, livre, livre, livre, parede, parede, parede, livre, buraco } };
+				//  ----------------------------- > x - VERMELHO
+			{ 	{ parede, parede, parede, parede, parede, parede, parede, parede, parede, parede, parede, parede }, // -
+				{ parede, livre, livre, livre, parede, livre, parede, livre, livre, buraco, parede, parede },       // -
+				{ parede, livre, parede, livre, livre, livre, livre, livre, parede, livre, buraco, parede },        // -
+				{ parede, livre, parede, parede, parede, livre, parede, livre, livre, livre, parede, parede },      // -
+				{ parede, livre, livre, livre/*teste*/, ouro, livre, parede, livre, parede, livre, livre, parede },          // Z
+				{ parede, livre, parede, buraco, parede, buraco, parede, wumpus, livre, livre, parede, parede },	// -
+				{ parede, livre, parede, livre, parede, parede, parede, parede, parede, livre, parede, parede },    // AZUL
+				{ parede, livre, livre, livre, livre, livre, livre, livre, parede, livre, parede, parede },
+				{ parede, livre, parede, buraco, parede, livre, parede, parede, parede, livre, parede, parede },
+				{ parede, parede, parede, livre, parede, livre, livre, livre, livre, livre, parede, parede }, 
+				{ parede, player, livre, livre, livre, livre, parede, parede, parede, livre, buraco, parede },
+				{ parede, parede, parede, parede, parede, parede, parede, parede, parede, parede, parede } 
+			};
 	}
 
 	public void exibirCenario() {
@@ -89,16 +93,6 @@ public class Cenario {
 			CENARIO[posicaoAtual[0]][posicaoAtual[1]]= player;
 			CENARIO[posicaoAnterior[0]][posicaoAnterior[1]] = seta;		
 		}
-	}
-
-	public void rotacionarDireita() {
-		
-		
-	}
-
-	public void rotacionarEsquerda() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

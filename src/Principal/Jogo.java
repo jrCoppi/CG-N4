@@ -10,7 +10,7 @@ public class Jogo {
 	private String statusAtual;
 	private boolean ativo;
 	private static Jogo instance;
-	private int[] posicaoAtual = { 0, 0 };
+	private int[] posicaoAtual = { 10, 1 };
 
 	public Jogo() {
 		numeroJogadas = 0;
@@ -129,7 +129,7 @@ public class Jogo {
 		
 		if (getSentidoMovimento() == 'E') {
 			if (podeMoverDireita())
-				posicaoAtual[0]++;
+				posicaoAtual[1]++;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -137,7 +137,7 @@ public class Jogo {
 		}
 		if (getSentidoMovimento() == 'D') {
 			if (podeMoverEsquerda())
-				posicaoAtual[0]--;
+				posicaoAtual[1]--;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -145,7 +145,7 @@ public class Jogo {
 		}
 		if (getSentidoMovimento() == 'C') {
 			if (podeMoverBaixo())
-				posicaoAtual[1]++;
+				posicaoAtual[0]++;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -153,7 +153,7 @@ public class Jogo {
 		}
 		if (getSentidoMovimento() == 'B') {
 			if (podeMoverCima())
-				posicaoAtual[1]--;
+				posicaoAtual[0]--;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -168,7 +168,7 @@ public class Jogo {
 		
 		if (getSentidoMovimento() == 'E') {
 			if (podeMoverEsquerda())
-				posicaoAtual[0]--;
+				posicaoAtual[1]--;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -176,7 +176,7 @@ public class Jogo {
 		}
 		if (getSentidoMovimento() == 'D') {
 			if (podeMoverDireita())
-				posicaoAtual[0]++;
+				posicaoAtual[1]++;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -184,7 +184,7 @@ public class Jogo {
 		}
 		if (getSentidoMovimento() == 'C') {
 			if (podeMoverCima())
-				posicaoAtual[1]--;
+				posicaoAtual[0]--;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -192,7 +192,7 @@ public class Jogo {
 		}
 		if (getSentidoMovimento() == 'B') {
 			if (podeMoverBaixo())
-				posicaoAtual[1]++;
+				posicaoAtual[0]++;
 			else {
 				statusAtual = "movimento não permitido";
 				return;
@@ -203,7 +203,7 @@ public class Jogo {
 		Cenario.getInstance().atualizarPosicaoPlayer(posicaoAnterior,posicaoAtual);
 	}
 
-	public void moverDireita() {
+	public char moverDireita() {
 		switch (getSentidoMovimento()) {
 		case 'D':
 			setSentidoMovimento('B');
@@ -218,11 +218,11 @@ public class Jogo {
 			setSentidoMovimento('C');
 			break;
 		}
-		Cenario.getInstance().rotacionarDireita();
-
+		
+		return this.getSentidoMovimento();
 	}
 
-	public void moverEsquerda() {
+	public char moverEsquerda() {
 		switch (getSentidoMovimento()) {
 		case 'D':
 			setSentidoMovimento('C');
@@ -237,8 +237,7 @@ public class Jogo {
 			setSentidoMovimento('B');
 			break;
 		}
-		Cenario.getInstance().rotacionarEsquerda();
-
+		return this.getSentidoMovimento();
 	}
 
 }
