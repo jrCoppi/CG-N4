@@ -25,4 +25,10 @@ public class Buraco extends ObjetoGrafico  {
 		gl.glPopMatrix();
 	}
 
+	@Override
+	public void loadImage(String nome) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

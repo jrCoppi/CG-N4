@@ -23,4 +23,10 @@ public class Wumpus extends ObjetoGrafico  {
 			glut.glutSolidCube(1.0f);
 		gl.glPopMatrix();
 	}
+
+	@Override
+	public void loadImage(String nome) {
+		// TODO Auto-generated method stub
+		
+	}
 }

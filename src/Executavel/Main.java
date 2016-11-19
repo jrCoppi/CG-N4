@@ -40,10 +40,19 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		glu = new GLU();
 		glut = new GLUT();
 		glDrawable.setGL(new DebugGL(gl));
-		
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		gl.glEnable(GL.GL_DEPTH_TEST);    
+		
+		gl.glEnable(GL.GL_COLOR_MATERIAL);
+		gl.glColorMaterial(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT_AND_DIFFUSE);	
 		
 		this.iniciaLuz();
+		
+		// Habilita o modelo de colorizacao de Gouraud
+				gl.glShadeModel(GL.GL_SMOOTH);
+				
+	gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MIN_FILTER,GL.GL_LINEAR);	
+	gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MAG_FILTER,GL.GL_LINEAR);
 		
 	    gl.glEnable(GL.GL_CULL_FACE);
 //	    gl.glDisable(GL.GL_CULL_FACE);
@@ -79,7 +88,8 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 				this.getCamera().getzCenter(), //Cz(P.linha 1) * largura
 				0.0f, 1.0f, 0.0f
 		);
-		//drawAxis();
+
+		drawAxis();
 		
 		// Desenha a tela no mundo
 		gl.glEnable(GL.GL_LIGHTING);

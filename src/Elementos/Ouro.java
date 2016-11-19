@@ -20,8 +20,17 @@ public class Ouro extends ObjetoGrafico {
 			gl.glScalef(escalaCubo1[0],escalaCubo1[1],escalaCubo1[2]);
 			//posição
 			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
-			glut.glutSolidCube(1.0f);
+			glut.glutSolidSphere(0.08, 16, 16);
+			//gl.glTranslatef(this.eixoX-1, this.eixoY+3, this.eixoZ);
+			
+			glut.glutSolidSphere(0.08, 16, 16);
 		gl.glPopMatrix();
+	}
+
+	@Override
+	public void loadImage(String nome) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

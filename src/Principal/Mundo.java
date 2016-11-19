@@ -49,6 +49,7 @@ public class Mundo {
 		float translacaoZ = 0;
 		float translacaoX = 0;
 		int elemento = 0;
+		
 		// Percorre o array e manda desenhar passando o valor da celula
 		// Desenha apenas os vizinhos visiveis para não sobrecarregar
 		//Linha (Z)
@@ -79,29 +80,6 @@ public class Mundo {
 			translacaoX = 0;
 		}
 	}
-	
-	public void atualizaCamera(){
-		int elemento = 0;
-		for (int i = 0; i < this.tela.getInstance().CENARIO.length; i++) {
-			//Coluna (X)
-			for (int j = 0; j < this.tela.getInstance().CENARIO[i].length; j++) {
-				elemento = this.tela.getInstance().CENARIO[i][j];
-				
-				//Player, seta a camera em primeira pessoa para essa posição
-				if(elemento == 2){
-					this.arrCameras.get("PESSOA").setColuna(j);
-					this.arrCameras.get("PESSOA").setLinha(i);
-					//P.Coluna * largura
-					this.arrCameras.get("PESSOA").setxEye(j * 2);
-					//P.Linha * largura
-					this.arrCameras.get("PESSOA").setzEye(i * 2);
-					break;
-				}
-			}
-		}
-		
-		this.arrCameras.get("PESSOA").rotacionaCamera();
-	}
 
 	public void realizarMovimento(char sentido) {
 		char proximo = 0;
@@ -131,8 +109,7 @@ public class Mundo {
 		
 		System.out.println(Jogo.getInstance().getStatusAtual());
 		if(proximo > 0){
-			this.arrCameras.get("PESSOA").setDirecao(proximo);
-			this.arrCameras.get("PESSOA").rotacionaCamera();
+			this.arrCameras.get("PESSOA").rotacionaCamera(proximo);
 		}
 	}
 	

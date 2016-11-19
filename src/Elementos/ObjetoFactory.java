@@ -20,6 +20,8 @@ public class ObjetoFactory {
     private void setElementos() {
     	//0 - Livre | 1 - Parede | 2 - Player | 3 - Poço |  4  - Ouro| 5 - Wumpus 
         Elementos = new HashMap<Integer,ObjetoGrafico>();
+        Livre liv = new Livre();
+        liv.setHasImage(true);
         Elementos.put(0, new Livre());
         Elementos.put(1, new Parede());
         Elementos.put(2, new Player());
