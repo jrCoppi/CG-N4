@@ -8,12 +8,12 @@ import Outros.Cor;
 
 public class Seta  extends ObjetoGrafico  {
 
-	private float escalaCubo1[]     = { 2.0f, 2.0f, 2.0f };
+	private float escalaCubo1[]     = { 2.0f, 0.0f, 2.0f };
 	
 	@Override
 	public void desenha(GL gl, GLUT glut) {
-		gl.glColor3f(Cor.LARANJA[0],Cor.LARANJA[1],Cor.LARANJA[2]);
-		gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.LARANJA, 0);
+		gl.glColor3f(Cor.CINZA[0],Cor.CINZA[1],Cor.CINZA[2]);
+		gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.CINZA, 0);
 
 		gl.glPushMatrix();
 			//desenhar cubo no chão
@@ -21,6 +21,7 @@ public class Seta  extends ObjetoGrafico  {
 			//posição
 			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
 			glut.glutSolidCube(1.0f);
+			//glut.glutSolidSphere(2,2,5);
 		gl.glPopMatrix();
 	}
 

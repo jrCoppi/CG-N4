@@ -68,12 +68,8 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
-		
-		//ver como rotacionar
-		//gl.glRotatef((float)this.getCamera().getxEye(), 1, 0, 0);
-		//gl.glRotatef((float)this.getCamera().getyEye(), 0, 1, 0);
-		//gl.glRotatef((float)this.getCamera().getzEye(), 0, 0, 1);
-		
+
+		Mundo.getInstance().atualizaCamera();
 		glu.gluLookAt(
 				this.getCamera().getxEye(), //P.linha x largura 
 				this.getCamera().getyEye(), //altura
@@ -83,8 +79,7 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 				this.getCamera().getzCenter(), //Cz(P.linha 1) * largura
 				0.0f, 1.0f, 0.0f
 		);
-
-		drawAxis();
+		//drawAxis();
 		
 		// Desenha a tela no mundo
 		gl.glEnable(GL.GL_LIGHTING);

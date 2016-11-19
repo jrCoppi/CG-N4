@@ -6,7 +6,16 @@ public class Camera {
 	private double xEye, yEye, zEye; //camera
 	private double xCenter, yCenter, zCenter; //luz
 	private double linha,coluna;
+	private char direcao;
 	
+	public char getDirecao() {
+		return direcao;
+	}
+
+	public void setDirecao(char direcao) {
+		this.direcao = direcao;
+	}
+
 	public Camera(String tipo){
 		this.iniciaTipoPesoa();
 		if(tipo == "CIMA"){
@@ -29,15 +38,16 @@ public class Camera {
 		
 		this.linha = 10.0f;
 		this.coluna = 1.0f;
+		this.direcao = 'D';
 	}
 	
-	public void rotacionaCamera(char proximo){
+	public void rotacionaCamera(){
 		double colunaInt = this.coluna;
 		double linhaInt = this.linha;
 		
 		//p.COLUNA(1) + direita(1) * lar
 		//p.linha(10) * larg(2)
-		switch(proximo){
+		switch(this.getDirecao()){
 			case 'D':
 				colunaInt++;
 				break;
