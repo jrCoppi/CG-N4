@@ -95,7 +95,7 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 				0.0f, 1.0f, 0.0f
 		);
 
-		drawAxis();
+		//drawAxis();
 		
 		// Desenha a tela no mundo
 		gl.glEnable(GL.GL_LIGHTING);

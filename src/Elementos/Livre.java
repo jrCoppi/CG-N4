@@ -24,26 +24,21 @@ public class Livre extends ObjetoGrafico  {
 	
 	@Override
 	public void desenha(GL gl, GLUT glut) {
-		
 		idTexture = new int[3];
 		gl.glGenTextures(1, idTexture, 2);
 		
+		//Método que carrega a imagem e inicia a textura
 		loadImage("C://temp//Imagens//grama.jpg");
 		
-		
-		//gl.glColor3f(Cor.CINZA[0],Cor.CINZA[1],Cor.CINZA[2]);
-		
 		gl.glPushMatrix();
-		//gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.CINZA, 0);
-			//desenhar cubo no chão
-			//gl.glScalef(escalaCubo1[0],escalaCubo1[1],escalaCubo1[2]);
-			//posição
 			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
 			gl.glEnable(GL.GL_TEXTURE_2D);	// Primeiro habilita uso de textura
 			
+			//Aplica a textura
 			gl.glBindTexture(GL.GL_TEXTURE_2D, idTexture[0]); 		// Especifica qual e a textura corrente pelo identificador 
 			gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, 3, imageWidth, ImageHeight, 0, GL.GL_BGR,GL.GL_UNSIGNED_BYTE, (ByteBuffer)td.getBuffer()); 		// Envio da textura para OpenGL
 			
+			//Desenha um cubo manualmente
 			this.desenhaCubo(gl,this.escalaCubo1);
 			
 			gl.glDisable(GL.GL_TEXTURE_2D);
@@ -52,23 +47,20 @@ public class Livre extends ObjetoGrafico  {
 
 	@Override
 	public void loadImage(String nomeArquivo) {
+		if(image != null)
+			return;
 		
-				if(image != null)
-					return;
-				
-				try {
-					image = ImageIO.read(new File(nomeArquivo));
-				}
-				catch (IOException e) {
-					JOptionPane.showMessageDialog(null,"Erro na leitura do arquivo "+nomeArquivo);
-				}
+		try {
+			image = ImageIO.read(new File(nomeArquivo));
+		}
+		catch (IOException e) {
+			JOptionPane.showMessageDialog(null,"Erro na leitura do arquivo "+nomeArquivo);
+		}
 
-				// Obtem largura e altura
-				imageWidth  = image.getWidth();
-				ImageHeight = image.getHeight();
-				// Gera uma nova TextureData...
-				td = new TextureData(0,0,false,image);
-				
-		
+		// Obtem largura e altura
+		imageWidth  = image.getWidth();
+		ImageHeight = image.getHeight();
+		// Gera uma nova TextureData...
+		td = new TextureData(0,0,false,image);
 	}
 }

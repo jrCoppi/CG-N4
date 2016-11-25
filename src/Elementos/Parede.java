@@ -15,7 +15,7 @@ import com.sun.opengl.util.texture.TextureData;
 import Outros.Cor;
 
 public class Parede extends ObjetoGrafico {
-	private float escalaCubo1[]     = { 2.0f, 2.0f, 2.0f };
+	private float escalaCubo1[]     = { 1.0f, 1.0f, 1.0f };
 	private  int imageWidth, ImageHeight;
 	private static BufferedImage image;
 	private static TextureData td;	
@@ -47,8 +47,8 @@ public class Parede extends ObjetoGrafico {
 			
 			gl.glDisable(GL.GL_TEXTURE_2D);
 		gl.glPopMatrix();
-		
-	/*	gl.glColor3f(Cor.VERMELHO[0],Cor.VERMELHO[1],Cor.VERMELHO[2]);
+		/*
+		gl.glColor3f(Cor.VERMELHO[0],Cor.VERMELHO[1],Cor.VERMELHO[2]);
 		gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.VERMELHO, 0);
 
 		gl.glPushMatrix();

@@ -15,8 +15,12 @@ public class Ouro extends ObjetoGrafico {
 		this.desenhaMoeda(gl, glut, this.eixoX, this.eixoZ);
 		this.desenhaMoeda(gl, glut, this.eixoX-0.3f, this.eixoZ);
 		this.desenhaMoeda(gl, glut, this.eixoX+0.3f, this.eixoZ);
+		this.desenhaMoeda(gl, glut, this.eixoX, this.eixoZ-0.3f);
+		this.desenhaMoeda(gl, glut, this.eixoX, this.eixoZ+0.3f);
 		this.desenhaMoeda(gl, glut, this.eixoX+0.2f, this.eixoZ + 0.2f);
-		this.desenhaMoeda(gl, glut, this.eixoX+0.3f, this.eixoZ - 0.3f);
+		this.desenhaMoeda(gl, glut, this.eixoX-0.2f, this.eixoZ - 0.2f);
+		this.desenhaMoeda(gl, glut, this.eixoX-0.2f, this.eixoZ - 0.2f);
+		this.desenhaMoeda(gl, glut, this.eixoX-0.3f, this.eixoZ + 0.3f);
 		
 	}
 	
