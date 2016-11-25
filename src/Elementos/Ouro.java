@@ -12,6 +12,15 @@ public class Ouro extends ObjetoGrafico {
 	
 	@Override
 	public void desenha(GL gl, GLUT glut) {
+		this.desenhaMoeda(gl, glut, this.eixoX, this.eixoZ);
+		this.desenhaMoeda(gl, glut, this.eixoX-0.3f, this.eixoZ);
+		this.desenhaMoeda(gl, glut, this.eixoX+0.3f, this.eixoZ);
+		this.desenhaMoeda(gl, glut, this.eixoX+0.2f, this.eixoZ + 0.2f);
+		this.desenhaMoeda(gl, glut, this.eixoX+0.3f, this.eixoZ - 0.3f);
+		
+	}
+	
+	private void desenhaMoeda(GL gl, GLUT glut, float x, float z){
 		gl.glColor3f(Cor.AMARELO[0],Cor.AMARELO[1],Cor.AMARELO[2]);
 		gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.AMARELO, 0);
 
@@ -19,11 +28,11 @@ public class Ouro extends ObjetoGrafico {
 			//tamanho do cubo
 			gl.glScalef(escalaCubo1[0],escalaCubo1[1],escalaCubo1[2]);
 			//posição
-			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
+			gl.glTranslated(x, this.eixoY, z);
 			glut.glutSolidSphere(0.08, 16, 16);
-			//gl.glTranslatef(this.eixoX-1, this.eixoY+3, this.eixoZ);
+			//gl.glTranslatef(this.eixoX-1, this.eixoY+1, this.eixoZ);
 			
-			glut.glutSolidSphere(0.08, 16, 16);
+			//glut.glutSolidSphere(0.08, 16, 16);
 		gl.glPopMatrix();
 	}
 

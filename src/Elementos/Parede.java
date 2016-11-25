@@ -24,29 +24,31 @@ public class Parede extends ObjetoGrafico {
 	public void desenha(GL gl, GLUT glut) {
 		
 
-		/*idTexture = new int[3];
+		idTexture = new int[3];
 		gl.glGenTextures(1, idTexture, 2);
 		
-		loadImage("C:\\Users\\willi\\workspace\\cg4\\src\\Imagens\\Muro.jpg");
+		loadImage("C://temp//Imagens//Muro.jpg");
 		
-		gl.glColor3f(Cor.VERMELHO[0],Cor.VERMELHO[1],Cor.VERMELHO[2]);
-		gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.VERMELHO, 0);
+		
+		//gl.glColor3f(Cor.CINZA[0],Cor.CINZA[1],Cor.CINZA[2]);
 		
 		gl.glPushMatrix();
-		
+		//gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.CINZA, 0);
 			//desenhar cubo no chão
-			gl.glScalef(escalaCubo1[0],escalaCubo1[1],escalaCubo1[2]);
+			//gl.glScalef(escalaCubo1[0],escalaCubo1[1],escalaCubo1[2]);
 			//posição
 			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
 			gl.glEnable(GL.GL_TEXTURE_2D);	// Primeiro habilita uso de textura
+			
 			gl.glBindTexture(GL.GL_TEXTURE_2D, idTexture[0]); 		// Especifica qual e a textura corrente pelo identificador 
 			gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, 3, imageWidth, ImageHeight, 0, GL.GL_BGR,GL.GL_UNSIGNED_BYTE, (ByteBuffer)td.getBuffer()); 		// Envio da textura para OpenGL
-			glut.glutSolidCube(1.0f);
-			//glut.glutSolidSphere(2,2,5);
+			
+			this.desenhaCubo(gl,this.escalaCubo1);
+			
 			gl.glDisable(GL.GL_TEXTURE_2D);
-		gl.glPopMatrix(); */
+		gl.glPopMatrix();
 		
-		gl.glColor3f(Cor.VERMELHO[0],Cor.VERMELHO[1],Cor.VERMELHO[2]);
+	/*	gl.glColor3f(Cor.VERMELHO[0],Cor.VERMELHO[1],Cor.VERMELHO[2]);
 		gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, Cor.VERMELHO, 0);
 
 		gl.glPushMatrix();
@@ -55,7 +57,7 @@ public class Parede extends ObjetoGrafico {
 			//posição
 			gl.glTranslated(this.eixoX, this.eixoY, this.eixoZ);
 			glut.glutSolidCube(1.0f);
-		gl.glPopMatrix();
+		gl.glPopMatrix();*/
 	}
 
 	@Override
@@ -77,5 +79,4 @@ public class Parede extends ObjetoGrafico {
 		td = new TextureData(0,0,false,image);
 		
 	}
-
 }

@@ -17,6 +17,7 @@ import com.sun.opengl.util.GLUT;
 import Outros.Camera;
 import Outros.Cor;
 import Padrao.Point4D;
+import Principal.Jogo;
 import Principal.Mundo;
 
 //import Padrao.BoundingBox;
@@ -49,10 +50,10 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		this.iniciaLuz();
 		
 		// Habilita o modelo de colorizacao de Gouraud
-				gl.glShadeModel(GL.GL_SMOOTH);
+		gl.glShadeModel(GL.GL_SMOOTH);
 				
-	gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MIN_FILTER,GL.GL_LINEAR);	
-	gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MAG_FILTER,GL.GL_LINEAR);
+		gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MIN_FILTER,GL.GL_LINEAR);	
+		gl.glTexParameteri(GL.GL_TEXTURE_2D,GL.GL_TEXTURE_MAG_FILTER,GL.GL_LINEAR);
 		
 	    gl.glEnable(GL.GL_CULL_FACE);
 //	    gl.glDisable(GL.GL_CULL_FACE);
@@ -79,6 +80,11 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		gl.glLoadIdentity();
 
 		Mundo.getInstance().atualizaCamera();
+		
+		if(Jogo.getInstance().isAtivo() == false){
+			Mundo.getInstance().setCameraEmUso("CIMA");
+		}
+		
 		glu.gluLookAt(
 				this.getCamera().getxEye(), //P.linha x largura 
 				this.getCamera().getyEye(), //altura
@@ -97,6 +103,10 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		Mundo.getInstance().desenhaTela(gl,glut);
 		
 		gl.glDisable(GL.GL_LIGHTING);
+		
+		//camera pra 2d
+		//projection
+		//
 		
 		gl.glFlush();
 	}

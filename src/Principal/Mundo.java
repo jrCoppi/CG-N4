@@ -131,6 +131,7 @@ public class Mundo {
 		
 		
 		System.out.println(Jogo.getInstance().getStatusAtual());
+		
 		if(proximo > 0){
 			this.arrCameras.get("PESSOA").setDirecao(proximo);
          this.arrCameras.get("PESSOA").rotacionaCamera();
