@@ -28,6 +28,7 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 	private GLU glu;
 	private GLUT glut;
 	private GLAutoDrawable glDrawable;
+	private boolean luz;
 	
 	/*
 	 * Iniciar
@@ -65,7 +66,10 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 		float posLight[] = { 5.0f, 5.0f, 10.0f, 0.0f };
 		gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, posLight, 0);
 		gl.glEnable(GL.GL_LIGHT0);
+		
+		
 	}
+	
 
 	/*
 	 * Mostra
@@ -78,6 +82,11 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadIdentity();
+		
+		if (luz)
+			gl.glEnable(GL.GL_LIGHT0);
+		else
+			gl.glDisable(GL.GL_LIGHT0);
 
 		Mundo.getInstance().atualizaCamera();
 		
@@ -157,11 +166,13 @@ public class Main implements GLEventListener, KeyListener, MouseListener, MouseM
 			direcao='D';
 			break;		
 		case KeyEvent.VK_1:
-			Mundo.getInstance().setCameraEmUso("CIMA");
-			
+			Mundo.getInstance().setCameraEmUso("CIMA");			
 			break;
 		case KeyEvent.VK_2:
 			Mundo.getInstance().setCameraEmUso("PESSOA");
+			break;
+		case KeyEvent.VK_3:
+			luz= !luz;
 			break;
 		}
 		Mundo.getInstance().realizarMovimento(direcao);
